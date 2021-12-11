@@ -1,7 +1,7 @@
 let app = new Vue({
   el: "#app",
   data: {
-    foods: ["alo", "potol", "lao", "komra"],
+    foods: [],
     alert: {
       success: false,
       warning: false,
@@ -11,6 +11,7 @@ let app = new Vue({
     newfood: null,
   },
   methods: {
+    //   Add food
     addfood: function () {
       if (this.newfood === null) {
         this.alert.danger = true;
@@ -19,7 +20,15 @@ let app = new Vue({
         this.alert.danger = false;
         this.alert.success = true;
         this.alert.msg = this.newfood + " added successfully";
+        this.foods.push(this.newfood);
+        this.newfood = "";
       }
+    },
+
+    // Delete food
+
+    deletefood: function (index) {
+      this.foods.splice(index, 1);
     },
   },
 });
