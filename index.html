@@ -18,24 +18,61 @@
     <div id="app" class="container my-5">
       <div class="input-group mb-3">
         <input
+          v-model="newfood"
           type="text"
           class="form-control"
           placeholder="Add work"
           aria-describedby="button-addon2"
         />
         <button
+          @click="addfood"
           class="btn btn-outline-primary"
           type="button"
           id="button-addon2"
         >
-          Button
+          Add food
         </button>
       </div>
       <hr />
+      <div v-if="alert.success" class="alert alert-success">
+        {{alert.msg}}
+        <span
+          class="close"
+          style="float: right; cursor: pointer"
+          data-dismiss="alert"
+        >
+          &times;
+        </span>
+      </div>
+      <div v-if="alert.warning" class="alert alert-warning">
+        {{alert.msg}}
+        <span
+          class="close"
+          style="float: right; cursor: pointer"
+          data-dismiss="alert"
+        >
+          &times;
+        </span>
+      </div>
+      <div v-if="alert.danger" class="alert alert-danger">
+        {{alert.msg}}
+        <span
+          class="close"
+          style="float: right; cursor: pointer"
+          data-dismiss="alert"
+        >
+          &times;
+        </span>
+      </div>
       <ul class="list-group">
-        <li class="list-group-item">
-          Work
-          <span style="float: right; cursor: pointer">&times;</span>
+        <li v-for=" (food ,i) in foods" class="list-group-item">
+          {{i + '. ' + food}}
+          <span
+            style="float: right; cursor: pointer"
+            class="close"
+            data-dismiss="alert"
+            >&times;</span
+          >
         </li>
       </ul>
     </div>
